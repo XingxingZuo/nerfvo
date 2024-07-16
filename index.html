@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="NeRF-VO: Real-Time Sparse Visual Odometry With Neural Radiance Fields">
+    <meta name="keywords" content="NeRF, Visual Odometry, SLAM, Dense MappingF">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NeRF-VO: Real-Time Sparse Visual Odometry With Neural Radiance Fields</title>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6PYDPEBZZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'G-L6PYDPEBZZ');
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <script src="./static/js/video_comparison.js"></script>
+  </head>
+  <body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://xingxingzuo.github.io">
+        <span class="icon">
+            <i class="fas fa-home"></i>
+        </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://xingxingzuo.github.io/fmgs">
+              FMGS
+            </a>
+            <a class="navbar-item" href="https://yingyexin.github.io/simplemapping.html">
+              SimpleMapping
+            </a>
+            <a class="navbar-item" href="https://shengyuh.github.io/dynfl">
+              DyNFL
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">NeRF-VO: Real-Time Sparse Visual Odometry With Neural Radiance
+                Fields
+              </h1>
+              <div class="column is-full_width">
+                <h2 class="title is-4">IEEE Robotics and Automation Letters 2024</h2>
+              </div>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                <a href="https://www.linkedin.com/in/jens-naumann/" target="_blank">Jens Naumann</a><sup>1</sup>,</span>
+                <span class="author-block">
+                <a href="https://binbin-xu.github.io/" target="_blank">Binbin Xu</a><sup>2</sup>,</span>
+                <span class="author-block">
+                <a href="https://scholar.google.ch/citations?user=SmGQ48gAAAAJ&hl=de" target="_blank">Stefan
+                Leutenegger</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                <a href="https://xingxingzuo.github.io/" target="_blank">Xingxing Zuo</a><sup>1,3,✉</sup>
+                </span>
+              </div>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>Technical University of Munich,</span>
+                <span class="author-block"><sup>2</sup>University of Toronto,</span>
+                <span class="author-block"><sup>3</sup>California Institute of Technology</span>
+              </div>
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                  <a href="https://ieeexplore.ieee.org/document/10578010"
+                    class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                  <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                  </a>
+                  </span>
+                  <span class="link-block">
+                  <a href="https://arxiv.org/abs/2312.13471" class="external-link button is-normal is-rounded is-dark"
+                    target="_blank">
+                  <span class="icon">
+                  <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                  </a>
+                  </span>
+                  <span class="link-block">
+                  <a href="https://youtu.be/El3-hSnuOz0?si=bGjMPECjWvTAlCLg"
+                    class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                  <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                  </a>
+                  </span>
+                  <span class="link-block">
+                  <a href="https://github.com/jens-nau/NeRF-VO"
+                    class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                  <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-full-width">
+              <video class="video" width="100%" id="video_comparison_teaser" loop playsinline autoplay muted src="./static/videos/comparison_room1.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video>
+              <canvas height=0 class="videoMerge" id="video_comparison_teaserMerge"></canvas>
+              <h2 class="subtitle has-text-centered" style="margin-top: 15px">
+                TL;DR: We propose NeRF-VO, a monocular RGB SLAM system that utilizes sparse visual odometry for pose tracking and an implicit neural representation for mapping. This enables highly accurate camera tracking, promising 3D reconstruction, and high-fidelity novel view synthesis.
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                We introduce a novel monocular visual odometry (VO) system, NeRF-VO, that integrates learning-based sparse visual odometry for low-latency camera tracking and a neural radiance scene representation for fine-detailed dense reconstruction and novel view synthesis.
+              </p>
+              <p>  
+                Our system initializes camera poses using sparse visual odometry and obtains view-dependent dense geometry priors from a monocular prediction network. We harmonize the scale of poses and dense geometry, treating them as supervisory cues to train a neural implicit scene representation. NeRF-VO demonstrates exceptional performance in both photometric and geometric fidelity of the scene representation by jointly optimizing a sliding window of keyframed poses and the underlying dense geometry, which is accomplished through training the radiance field with volume rendering.
+              </p>
+              <p>  
+                We surpass SOTA methods in pose estimation accuracy, novel view synthesis fidelity, and dense reconstruction quality across a variety of synthetic and real-world datasets while achieving a higher camera tracking frequency and consuming less GPU memory.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3" style="margin-top: 30px">Video</h2>
+            <div class="publication-video">
+              <iframe src="https://www.youtube.com/embed/El3-hSnuOz0?si=mt0MmfiOFFHTSW2F" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3" style="margin-top: -20px">Method</h2>
+            <img src="./static/images/method.png" class="center">
+            <div class="content has-text-justified">
+              <p style="margin-top: 30px">
+                <b>NeRF-VO</b> uses only a sequence of RGB images as input. The sparse visual tracking module selects keyframes from this input stream and calculates camera poses and depth values for a set of sparse patches. Additionally, the dense geometry enhancement module predicts dense depth maps and surface normals and aligns them with the sparse depth from the tracking module. The NeRF-based dense mapping module utilizes raw RGB images, inferred depth maps, surface normals, and camera poses to optimize a neural implicit representation and refine the camera poses. Our system is capable of performing high-quality 3D dense reconstruction and rendering images at novel views.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- <section class="section">
+      <div class="container is-max-desktop">
+      <div class="columns is-centered ">
+        <div class="column is-full-width">
+          <h2 class="title is-3 has-text-centered" style="margin-top: -30px">Additional Results</h2>
+          <h3 class="title is-4">Replica Dataset</h3>
+          <div class="column is-full-width">
+            <h3 class="title is-5">Room 1</h3>
+            <video class="video" width="100%" id="video_comparison_room1" loop playsinline autoplay muted src="./static/videos/comparison_room1.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video>
+            <canvas height=0 class="videoMerge" id="video_comparison_room1Merge"></canvas>
+          </div>
+          <div class="column is-full-width">
+            <h3 class="title is-5">Office 4</h3>
+            <video class="video" width="100%" id="video_comparison_office4" loop playsinline autoplay muted src="./static/videos/comparison_office4.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video>
+            <canvas height=0 class="videoMerge" id="video_comparison_office4Merge"></canvas>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{naumann2024nerfvo,
+  author={Naumann, Jens and Xu, Binbin and Leutenegger, Stefan and Zuo, Xingxing},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={NeRF-VO: Real-Time Sparse Visual Odometry With Neural Radiance Fields}, 
+  year={2024},
+}</code></pre>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <!-- <div class="content has-text-centered">
+          <a class="icon-link" href="./static/videos/nerfies_paper.pdf">
+            <i class="fas fa-file-pdf"></i>
+          </a>
+          <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+            <i class="fab fa-github"></i>
+          </a>
+          </div> -->
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This website is licensed under a <a rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+              <p>
+                This website template is from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
+                We sincerely thank <a href="https://keunhong.com/">Keunhong Park</a> for developing and open-sourcing this template. 
+              </p>
+              <p>
+                The sliding bar video comparison is from <a href="https://dorverbin.github.io/refnerf/">Ref-NeRF</a>. 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
